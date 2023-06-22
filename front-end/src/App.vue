@@ -33,6 +33,13 @@ export default {
       </ul>
     </div>
 
+    <div class="form_container">
+      <form>
+        <input type="text" placeholder="Inserisci nuova cosa da fare">
+        <input class="my_submit" type="submit" value="ADD NEW TO-DO">
+      </form>
+    </div>
+
   </main>
 </template>
 
@@ -81,11 +88,31 @@ li>.trash_container:hover {
   background-color: rgb(129, 0, 0);
 }
 
-.list_container {
+.list_container,
+.form_container {
   width: 40%;
   margin: auto;
   background-color: white;
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.form_container>form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.my_submit {
+  color: white;
+  background-color: rgb(0, 0, 122);
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.my_submit:hover {
+  cursor: pointer;
+  background-color: rgb(56, 56, 255);
 }
 </style>
