@@ -7,7 +7,7 @@ export default {
     };
   },
   mounted() {
-    axios.get('http://localhost/php-todo-list-json/')
+    axios.get('http://localhost/php-todo-list-json/back-end/')
       .then(result => {
         // console.log(JSON.stringify(result));
         this.toDoList = result.data;
@@ -26,7 +26,7 @@ export default {
 
         <li v-for="(toDo, index) in toDoList" :key="index">{{ toDo.do }}
           <div class="trash_container">
-            <i class="fa-solid fa-trash-can"></i>
+            <i class="fa-solid fa-trash"></i>
           </div>
         </li>
 
@@ -69,13 +69,16 @@ li {
 }
 
 .trash_container {
-  padding: 3px;
-  border: 1px solid grey;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #ff5454;
+  color: white;
 }
 
 li>.trash_container:hover {
   cursor: pointer;
-  background-color: grey;
+  background-color: rgb(129, 0, 0);
 }
 
 .list_container {

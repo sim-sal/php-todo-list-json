@@ -4,16 +4,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-Type: application/json');
 
-$toDoList = [
-    [
-        'do' => 'fare la spesa',
-    ],
-    [
-        'do' => 'fare la doccia',
-    ],
-    [
-        'do' => 'fare passeggiata al cane',
-    ],
-];
+$toDoListStr = file_get_contents('data.json');
+$toDoList = json_decode($toDoListStr);
 
 echo json_encode($toDoList);
