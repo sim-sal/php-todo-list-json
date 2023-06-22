@@ -3,8 +3,26 @@ import axios from "axios";
 export default {
   data() {
     return {
-      toDoList: []
+      toDoList: [],
+      newToDoElement: {
+        todo_text: ""
+      }
     };
+  },
+  methods: {
+    onSubmit() {
+
+      const url = 'http://localhost/php-todo-list-json/back-end/postTodolist.php';
+      const data = this.newToDoElement;
+      const headers = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+      // console.error("on submit", this.newToDoElement.todo_text);
+      axios.post(url, data, headers)
+        .then(result => {
+          console.log("result", result.data);
+        }).catch(error => console.error("error", error))
+    }
   },
   mounted() {
     axios.get('http://localhost/php-todo-list-json/back-end/')
@@ -34,8 +52,8 @@ export default {
     </div>
 
     <div class="form_container">
-      <form>
-        <input type="text" placeholder="Inserisci nuova cosa da fare">
+      <form @submit.prevent="onSubmit">
+        <input type="text" name="todo_text" placeholder="Inserisci nuova cosa da fare" v-model="newToDoElement.todo_text">
         <input class="my_submit" type="submit" value="ADD NEW TO-DO">
       </form>
     </div>
@@ -113,6 +131,6 @@ li>.trash_container:hover {
 
 .my_submit:hover {
   cursor: pointer;
-  background-color: rgb(56, 56, 255);
+  background-color: rgb(87, 87, 255);
 }
 </style>
