@@ -18,6 +18,7 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' }
       };
       // console.error("on submit", this.newToDoElement.todo_text);
+
       if (this.newToDoElement.todo_text !== "") {
         axios.post(url, data, headers)
           .then(result => {
@@ -27,10 +28,26 @@ export default {
 
           }).catch(error => console.error("error", error))
       } else {
-        alert("Scrivi la tua To Do!!");
+        alert("DEVI RIEMPIRE IL CAMPO PER AGGIUNGERE QUALCOSA IN LISTA!!");
       }
 
+    },
+    deleteToDo(index) {
+
+      const url = 'http://localhost/php-todo-list-json/back-end/deleteToDo.php';
+      const data = { "index": index };
+      const headers = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+
+      axios.post(url, data, headers)
+        .then(result => {
+
+          const data = result.data;
+          this.toDoList = data;
+        });
     }
+
   },
   mounted() {
     axios.get('http://localhost/php-todo-list-json/back-end/')
@@ -52,7 +69,7 @@ export default {
 
         <li v-for="(toDo, index) in toDoList" :key="index">
           <h4>{{ toDo.todo_text }}</h4>
-          <div class="trash_container">
+          <div class="trash_container" @click="deleteToDo(i)">
             <i class="fa-solid fa-trash"></i>
           </div>
         </li>
