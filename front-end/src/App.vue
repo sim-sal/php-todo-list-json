@@ -136,14 +136,13 @@ li>.trash_container:hover {
   background-color: rgb(129, 0, 0);
 }
 
-.list_container,
-.form_container {
+.list_container {
   width: 40%;
   margin: auto;
   background-color: white;
   padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .list_container {
@@ -164,6 +163,18 @@ li>.trash_container:hover {
 .list_container::-webkit-scrollbar-thumb {
   background-color: #0066ce;
   border-radius: 10px;
+}
+
+.form_container {
+  position: fixed;
+  left: 30%;
+  bottom: 135px;
+  width: 40%;
+  margin: auto;
+  background-color: white;
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .form_container>form {
