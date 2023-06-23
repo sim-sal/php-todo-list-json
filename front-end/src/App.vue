@@ -20,7 +20,10 @@ export default {
       // console.error("on submit", this.newToDoElement.todo_text);
       axios.post(url, data, headers)
         .then(result => {
-          console.log("result", result.data);
+          this.toDoList = result.data;
+
+          this.newToDoElement.todo_text = "";
+
         }).catch(error => console.error("error", error))
     }
   },
@@ -42,7 +45,7 @@ export default {
     <div class="list_container">
       <ul>
 
-        <li v-for="(toDo, index) in toDoList" :key="index">{{ toDo.do }}
+        <li v-for="(toDo, index) in toDoList" :key="index">{{ toDo.todo_text }}
           <div class="trash_container">
             <i class="fa-solid fa-trash"></i>
           </div>
@@ -54,7 +57,7 @@ export default {
     <div class="form_container">
       <form @submit.prevent="onSubmit">
         <input type="text" name="todo_text" placeholder="Inserisci nuova cosa da fare" v-model="newToDoElement.todo_text">
-        <input class="my_submit" type="submit" value="ADD NEW TO-DO">
+        <input class="my_submit" type="submit" value="ADD NEW TO-DO" onclick="window.location.reload()">
       </form>
     </div>
 
@@ -114,6 +117,26 @@ li>.trash_container:hover {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+.list_container {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.list_container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.list_container::-webkit-scrollbar-track {
+  background-color: #ccc;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.list_container::-webkit-scrollbar-thumb {
+  background-color: #0066ce;
+  border-radius: 10px;
 }
 
 .form_container>form {

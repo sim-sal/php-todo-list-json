@@ -8,3 +8,5 @@ $toDoListStr = file_get_contents('data.json');
 $toDoList = json_decode($toDoListStr);
 
 echo json_encode($toDoList);
+
+$curpage = $_SERVER["PHP_SELF"];
