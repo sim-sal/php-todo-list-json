@@ -69,7 +69,7 @@ export default {
 
         <li v-for="(toDo, index) in toDoList" :key="index">
           <h4>{{ toDo.todo_text }}</h4>
-          <div class="trash_container" @click="deleteToDo(i)">
+          <div class="trash_container" @click="deleteToDo(index)">
             <i class="fa-solid fa-trash"></i>
           </div>
         </li>
