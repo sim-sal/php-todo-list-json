@@ -18,13 +18,18 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' }
       };
       // console.error("on submit", this.newToDoElement.todo_text);
-      axios.post(url, data, headers)
-        .then(result => {
-          this.toDoList = result.data;
+      if (this.newToDoElement.todo_text !== "") {
+        axios.post(url, data, headers)
+          .then(result => {
+            this.toDoList = result.data;
 
-          this.newToDoElement.todo_text = "";
+            this.newToDoElement.todo_text = "";
 
-        }).catch(error => console.error("error", error))
+          }).catch(error => console.error("error", error))
+      } else {
+        alert("Scrivi la tua To Do!!");
+      }
+
     }
   },
   mounted() {
@@ -45,7 +50,8 @@ export default {
     <div class="list_container">
       <ul>
 
-        <li v-for="(toDo, index) in toDoList" :key="index">{{ toDo.todo_text }}
+        <li v-for="(toDo, index) in toDoList" :key="index">
+          <h4>{{ toDo.todo_text }}</h4>
           <div class="trash_container">
             <i class="fa-solid fa-trash"></i>
           </div>
@@ -57,7 +63,7 @@ export default {
     <div class="form_container">
       <form @submit.prevent="onSubmit">
         <input type="text" name="todo_text" placeholder="Inserisci nuova cosa da fare" v-model="newToDoElement.todo_text">
-        <input class="my_submit" type="submit" value="ADD NEW TO-DO" onclick="window.location.reload()">
+        <input class="my_submit" type="submit" value="ADD NEW TO-DO">
       </form>
     </div>
 
@@ -94,6 +100,10 @@ li {
   margin-bottom: 10px;
   border-bottom: 1px solid grey;
   font-size: 20px;
+}
+
+.line-through {
+  text-decoration: line-through;
 }
 
 .trash_container {

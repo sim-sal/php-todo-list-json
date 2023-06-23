@@ -11,3 +11,4 @@ $data[] = $newToDo;
 
 $encData = json_encode($data);
 file_put_contents("data.json", $encData);
+echo $encData;
